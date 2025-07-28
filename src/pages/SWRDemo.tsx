@@ -9,7 +9,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const SWRDemo: React.FC = () => {
   const { data, error, isLoading } = useSWR<ProductsResponse>(
-    'https://dummyjson.com/products?limit=10',
+    'https://dummyjson.com/products',
     fetcher,
     {
       revalidateOnFocus: false,

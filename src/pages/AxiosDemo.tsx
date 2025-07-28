@@ -16,7 +16,7 @@ const AxiosDemo: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get<ProductsResponse>('https://dummyjson.com/products?limit=9');
+      const response = await axios.get<ProductsResponse>('https://dummyjson.com/products');
       setProducts(response.data.products);
       setTotal(response.data.total);
     } catch (err) {
