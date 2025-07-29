@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios  from '../services/custom-axios';
 import type { Product, ProductsResponse } from '../types';
 import ProductCard from '../components/common/ProductCard';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -14,18 +14,11 @@ const AxiosDemo: React.FC = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      setError(null);
-      
-      const response = await axios.get<ProductsResponse>('https://dummyjson.com/products');
+      const response = await axios.get<ProductsResponse>('/products');
       setProducts(response.data.products);
       setTotal(response.data.total);
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        setError(err.message);
-      } else {
-        setError('An unknown error occurred');
-      }
-      setProducts([]);
+      setError('Failed to fetch products');
     } finally {
       setLoading(false);
     }

@@ -9,9 +9,9 @@ const RTKQueryDemo: React.FC = () => {
   
   // 3 calls với cùng ID - RTK Query sẽ dedupe thành 1 request
   const product1 = useGetProductByIdQuery("1");
-  const product2 = useGetProductByIdQuery("2");
-  const product3 = useGetProductByIdQuery("3");
-  const product4 = useGetProductByIdQuery("3");
+  const product2 = useGetProductByIdQuery("1");
+  const product3 = useGetProductByIdQuery("1");
+  const product4 = useGetProductByIdQuery("1");
 
   if (isLoading) {
     return <LoadingSpinner color="purple-500" text="Loading products with RTK Query..." />;

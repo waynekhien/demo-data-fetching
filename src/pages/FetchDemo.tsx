@@ -13,20 +13,12 @@ const FetchDemo: React.FC = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      setError(null);
-      
       const response = await fetch('https://dummyjson.com/products');
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
       const data: ProductsResponse = await response.json();
       setProducts(data.products);
       setTotal(data.total);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
-      setProducts([]);
+      setError('Failed to fetch products');
     } finally {
       setLoading(false);
     }

@@ -5,17 +5,19 @@ import ProductCard from '../components/common/ProductCard';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
 
+const urlDetails = 'https://dummyjson.com/products';
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const SWRDemo: React.FC = () => {
   const { data, error, isLoading } = useSWR<ProductsResponse>(
-    'https://dummyjson.com/products',
+    urlDetails,
     fetcher,
     {
       revalidateOnFocus: false,
       revalidateOnReconnect: true,
       dedupingInterval: 5000,
     }
+    
   );
 
   if (isLoading) {
@@ -25,6 +27,7 @@ const SWRDemo: React.FC = () => {
   if (error) {
     return <ErrorMessage message={error.message} />;
   }
+  
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -46,6 +49,8 @@ const SWRDemo: React.FC = () => {
       </div>
     </div>
   );
+  
 };
 
 export default SWRDemo;
+
